@@ -1,0 +1,67 @@
+Binary files BootCache-110.2.orig/.DS_Store and BootCache-110.2/.DS_Store differ
+diff -ru BootCache-110.2.orig/BootCache.xcodeproj/project.pbxproj BootCache-110.2/BootCache.xcodeproj/project.pbxproj
+--- BootCache-110.2.orig/BootCache.xcodeproj/project.pbxproj	2015-03-03 17:31:41.000000000 -0500
++++ BootCache-110.2/BootCache.xcodeproj/project.pbxproj	2016-05-20 04:00:52.000000000 -0400
+@@ -3,7 +3,7 @@
+ 	archiveVersion = 1;
+ 	classes = {
+ 	};
+-	objectVersion = 46;
++	objectVersion = 47;
+ 	objects = {
+ 
+ /* Begin PBXAggregateTarget section */
+@@ -329,7 +329,7 @@
+ 				LastUpgradeCheck = 0700;
+ 			};
+ 			buildConfigurationList = 42F550340A77D4BD00672F71 /* Build configuration list for PBXProject "BootCache" */;
+-			compatibilityVersion = "Xcode 3.2";
++			compatibilityVersion = "Xcode 6.3";
+ 			developmentRegion = English;
+ 			hasScannedForEncodings = 1;
+ 			knownRegions = (
+@@ -483,7 +483,7 @@
+ 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+ 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+ 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+-				SDKROOT = macosx.internal;
++				SDKROOT = macosx10.10;
+ 				WARNING_CFLAGS = (
+ 					"-Wmost",
+ 					"-Wno-four-char-constants",
+@@ -500,7 +500,7 @@
+ 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+ 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+ 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+-				SDKROOT = macosx.internal;
++				SDKROOT = macosx10.10;
+ 				WARNING_CFLAGS = (
+ 					"-Wmost",
+ 					"-Wno-four-char-constants",
+@@ -533,10 +533,12 @@
+ 		89F255720DAABEAD00CA7984 /* Development */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				COPY_PHASE_STRIP = NO;
+ 				OTHER_LDFLAGS = "";
+ 				PRODUCT_NAME = BootCache;
++				SDKROOT = macosx;
+ 				SECTORDER_FLAGS = "";
+ 				ZERO_LINK = YES;
+ 			};
+@@ -545,9 +547,11 @@
+ 		89F255770DAABEAD00CA7984 /* Default */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				OTHER_LDFLAGS = "";
+ 				PRODUCT_NAME = BootCache;
++				SDKROOT = macosx;
+ 				SECTORDER_FLAGS = "";
+ 			};
+ 			name = Default;
+Only in BootCache-110.2/BootCache.xcodeproj: project.xcworkspace
+Only in BootCache-110.2/BootCache.xcodeproj: xcuserdata

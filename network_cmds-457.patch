@@ -1,0 +1,76 @@
+Binary files network_cmds-457.orig/.DS_Store and network_cmds-457/.DS_Store differ
+diff -ru network_cmds-457.orig/netstat.tproj/if.c network_cmds-457/netstat.tproj/if.c
+--- network_cmds-457.orig/netstat.tproj/if.c	2014-06-23 20:35:20.000000000 -0400
++++ network_cmds-457/netstat.tproj/if.c	2016-05-20 17:53:17.000000000 -0400
+@@ -1719,8 +1719,8 @@
+ 	    sfb->allocation, sfb->dropthresh);
+ 	printf("     [ flow controlled: %7llu  adv feedback: %10llu ]\n",
+ 	    sp->flow_controlled, sp->flow_feedback);
+-	printf("     [ min queue delay: %10s   delay_fcthreshold: %12llu]\n "
+-	    "     [stalls: %12lu]\n",
++	printf("     [ min queue delay: %10s   delay_fcthreshold: %12u"
++	    "     [stalls: %12llu]\n",
+ 	    nsec_to_str(sfb->min_estdelay), sfb->delay_fcthreshold,
+ 	    sp->dequeue_stall);
+ 
+diff -ru network_cmds-457.orig/network_cmds.xcodeproj/project.pbxproj network_cmds-457/network_cmds.xcodeproj/project.pbxproj
+--- network_cmds-457.orig/network_cmds.xcodeproj/project.pbxproj	2014-06-27 01:18:42.000000000 -0400
++++ network_cmds-457/network_cmds.xcodeproj/project.pbxproj	2016-05-20 17:52:26.000000000 -0400
+@@ -3640,7 +3640,7 @@
+ 				METAL_ENABLE_DEBUG_INFO = YES;
+ 				ONLY_ACTIVE_ARCH = YES;
+ 				PRODUCT_NAME = "$(TARGET_NAME)";
+-				SDKROOT = macosx.internal;
++				SDKROOT = macosx10.10;
+ 			};
+ 			name = Debug;
+ 		};
+@@ -3673,7 +3673,7 @@
+ 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+ 				METAL_ENABLE_DEBUG_INFO = NO;
+ 				PRODUCT_NAME = "$(TARGET_NAME)";
+-				SDKROOT = macosx.internal;
++				SDKROOT = macosx10.10;
+ 			};
+ 			name = Release;
+ 		};
+@@ -3706,7 +3706,7 @@
+ 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+ 				METAL_ENABLE_DEBUG_INFO = NO;
+ 				PRODUCT_NAME = "$(TARGET_NAME)";
+-				SDKROOT = macosx.internal;
++				SDKROOT = macosx10.10;
+ 			};
+ 			name = "Ignore Me";
+ 		};
+@@ -4831,6 +4831,7 @@
+ 				7200F3001958A34D0033E22C /* Ignore Me */,
+ 			);
+ 			defaultConfigurationIsVisible = 0;
++			defaultConfigurationName = Release;
+ 		};
+ 		7216D24B0EE896EC00AE70E4 /* Build configuration list for PBXNativeTarget "netstat" */ = {
+ 			isa = XCConfigurationList;
+Only in network_cmds-457/network_cmds.xcodeproj: project.xcworkspace
+Only in network_cmds-457/network_cmds.xcodeproj: xcuserdata
+diff -ru network_cmds-457.orig/rtadvd.tproj/rtadvd.c network_cmds-457/rtadvd.tproj/rtadvd.c
+--- network_cmds-457.orig/rtadvd.tproj/rtadvd.c	2013-03-04 18:56:46.000000000 -0500
++++ network_cmds-457/rtadvd.tproj/rtadvd.c	2016-05-20 17:53:42.000000000 -0400
+@@ -1118,7 +1118,7 @@
+ 		preferred_time += now.tv_sec;
+ 
+ 		if (!pp->timer && rai->clockskew &&
+-		    abs(preferred_time - pp->pltimeexpire) > rai->clockskew) {
++		    labs(preferred_time - pp->pltimeexpire) > rai->clockskew) {
+ 			syslog(LOG_INFO,
+ 			       "<%s> preferred lifetime for %s/%d"
+ 			       " (decr. in real time) inconsistent on %s:"
+@@ -1154,7 +1154,7 @@
+ 		valid_time += now.tv_sec;
+ 
+ 		if (!pp->timer && rai->clockskew &&
+-		    abs(valid_time - pp->vltimeexpire) > rai->clockskew) {
++		    labs(valid_time - pp->vltimeexpire) > rai->clockskew) {
+ 			syslog(LOG_INFO,
+ 			       "<%s> valid lifetime for %s/%d"
+ 			       " (decr. in real time) inconsistent on %s:"

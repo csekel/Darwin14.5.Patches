@@ -1,0 +1,98 @@
+Binary files libutil-38/.DS_Store and libutil-38/.DS_Store differ
+diff -ru libutil-38.2/getmntopts.c libutil-38/getmntopts.c
+--- libutil-38/getmntopts.c	2011-09-20 19:38:36.000000000 -0400
++++ libutil-38/getmntopts.c	2016-05-19 01:44:02.000000000 -0400
+@@ -46,7 +46,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include <mntopts.h>
++#include "mntopts.h"
+ 
+ int getmnt_silent = 0;
+ 
+diff -ru libutil-38/humanize_number.c libutil-38/humanize_number.c
+--- libutil-38/humanize_number.c	2010-03-17 17:30:43.000000000 -0400
++++ libutil-38/humanize_number.c	2016-05-19 01:44:02.000000000 -0400
+@@ -45,7 +45,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <locale.h>
+-#include <libutil.h>
++#include "libutil.h"
+ #include <stdint.h>
+ #include <limits.h>
+ 
+diff -ru libutil-38/libutil.xcodeproj/project.pbxproj libutil-38/libutil.xcodeproj/project.pbxproj
+--- libutil-38/libutil.xcodeproj/project.pbxproj	2014-01-07 17:39:33.000000000 -0500
++++ libutil-38/libutil.xcodeproj/project.pbxproj	2016-05-19 01:41:47.000000000 -0400
+@@ -315,7 +315,7 @@
+ 		BA79F99713BB70D7006A292D /* Project object */ = {
+ 			isa = PBXProject;
+ 			attributes = {
+-				LastUpgradeCheck = 0420;
++				LastUpgradeCheck = 0640;
+ 			};
+ 			buildConfigurationList = BA79F99A13BB70D7006A292D /* Build configuration list for PBXProject "libutil" */;
+ 			compatibilityVersion = "Xcode 3.2";
+@@ -419,6 +419,7 @@
+ 			baseConfigurationReference = 3F09C378186D1F73007AF93C /* base.xcconfig */;
+ 			buildSettings = {
+ 				APPLY_RULES_IN_COPY_FILES = YES;
++				ONLY_ACTIVE_ARCH = YES;
+ 				"PLIST_FILE_OUTPUT_FORMAT[sdk=iphoneos*]" = binary;
+ 				"PLIST_FILE_OUTPUT_FORMAT[sdk=macosx*]" = XML;
+ 				USE_HEADERMAP = NO;
+@@ -439,7 +440,7 @@
+ 		BA79F9C813BB718B006A292D /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				COMBINE_HIDPI_IMAGES = YES;
+ 				DYLIB_COMPATIBILITY_VERSION = 1.0;
+ 				DYLIB_CURRENT_VERSION = 1.0;
+ 				EXECUTABLE_PREFIX = lib;
+@@ -462,7 +463,7 @@
+ 		BA79F9C913BB718B006A292D /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				COMBINE_HIDPI_IMAGES = YES;
+ 				DYLIB_COMPATIBILITY_VERSION = 1.0;
+ 				DYLIB_CURRENT_VERSION = 1.0;
+ 				EXECUTABLE_PREFIX = lib;
+Only in libutil-38/libutil.xcodeproj/project.xcworkspace: xcuserdata
+Only in libutil-38/libutil.xcodeproj: xcuserdata
+diff -ru libutil-38/pidfile.c libutil-38/pidfile.c
+--- libutil-38/pidfile.c	2006-05-18 17:16:17.000000000 -0400
++++ libutil-38/pidfile.c	2016-05-19 01:44:00.000000000 -0400
+@@ -37,7 +37,7 @@
+ #include <string.h>
+ #include <err.h>
+ #include <errno.h>
+-#include <libutil.h>
++#include "libutil.h"
+ 
+ static int _pidfile_remove(struct pidfh *pfh, int freeit);
+ 
+diff -ru libutil-38.2/trimdomain.c libutil-38/trimdomain.c
+--- libutil-38/trimdomain.c	2011-09-19 19:42:32.000000000 -0400
++++ libutil-38/trimdomain.c	2016-05-19 01:45:19.000000000 -0400
+@@ -30,7 +30,7 @@
+ 
+ #include <sys/param.h>
+ 
+-#include <libutil.h>
++#include "libutil.h"
+ #include <string.h>
+ #include <unistd.h>
+ 
+diff -ru libutil-38/xcconfigs/tzlinkd.xcconfig libutil-38/xcconfigs/tzlinkd.xcconfig
+--- libutil-38/xcconfigs/tzlinkd.xcconfig	2014-01-06 15:39:44.000000000 -0500
++++ libutil-38/xcconfigs/tzlinkd.xcconfig	2016-05-19 01:43:18.000000000 -0400
+@@ -1,4 +1,4 @@
+-#include "<DEVELOPER_DIR>/AppleInternal/XcodeConfig/SimulatorSupport.xcconfig"
++#include "<DEVELOPER_DIR>/XcodeConfig/SimulatorSupport.xcconfig"
+ 
+ // Set INSTALL_PATH_ACTUAL to whatever INSTALL_PATH would normally be
+ INSTALL_PATH_ACTUAL = /usr/sbin
